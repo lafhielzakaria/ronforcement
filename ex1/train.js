@@ -20,7 +20,7 @@ function rotate(tableau, index) {
         }
     });
     for (let i = index + 1; i < array.length; i++) {
-        if (array[i] == selectedElement){
+        if (array[i] == selectedElement) {
             break;
         }
         let currentElement = array[i];
@@ -29,21 +29,45 @@ function rotate(tableau, index) {
         array.unshift(currentElement);
         // i--;
         // array.unshift(currentElement);
-    
+
     }
     // array.push(selectedElement);
-    console.log("result"+array);
+    console.log("result" + array);
 }
-let array = [1,2,3,4,5];
+let array = [1, 2, 3, 4, 5];
 rotate(array, 2);
 //ex2 end
 //ex3 start
 function flatten(tableau) {
-  let flattenArray = tableau.filter((element)=>{
-   console.log("element"+element);
-  });
-  console.log(flattenArray);
+    let flattenArray = tableau.flat(Infinity);
+    console.log(flattenArray);
 }
-let array2 = [1,[2,3],[4,[5,6]]];
+let array2 = [1, [2, 3], [4, [5, 6]]];
 flatten(array2);
 //ex3 end
+//ex4 start
+function intersection(firstArray, secondArray) {
+    let theSameNumbers = [];
+    firstArray.forEach(e => {
+        let checkIfExist = secondArray.includes(e);
+        if (checkIfExist == true) {
+            theSameNumbers.push(e);
+        }
+    });
+    return theSameNumbers;
+}
+function difference (){
+    let diff = [];
+    firstArray.forEach(e => {
+        let checkIfExist = secondArray.includes(e);
+        if (checkIfExist == false) {
+            diff.push(e);
+        }
+    });
+    return diff;
+}
+let firstArray = [1, 2, 3, 4];
+let secondArray = [2, 4, 6];
+intersection(firstArray, secondArray)
+difference(firstArray, secondArray) 
+//ex4 end
