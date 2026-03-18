@@ -71,3 +71,17 @@ let secondArray = [2, 4, 6];
 intersection(firstArray, secondArray)
 difference(firstArray, secondArray) 
 //ex4 end
+//ex5 start
+function groupBy(tableau, cle) {
+
+}
+const produits = [
+{ nom:'Stylo', categorie:'ecriture', prix: 1.5 },
+{ nom:'Cahier', categorie:'papier', prix: 3.5 },
+{ nom:'Feutre', categorie:'ecriture', prix: 2.0 },
+{ nom:'Post-it', categorie:'papier', prix: 3.8 },
+{ nom:'Ciseaux', categorie:'bureau', prix: 6.5 }
+];
+ groupBy(produits, "categorie");
+//ex5 end
+//
