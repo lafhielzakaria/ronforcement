@@ -85,7 +85,27 @@ function mettreAJour(array, id, updateValue) {
 }
 function supprimerProduit(array, id) {
     let currentId = id;
-      
+    //forEach
+    //condiction
+    //splice with indexOf
+    array.forEach(product => {
+        if (product.id == currentId) {
+            array.splice(array.indexOf(product), 1);
+        }
+    })
+    return array;
+}
+function getProduitById(array, id) {
+    let currentId = id;
+    //forEach
+    //condition
+    //return product
+    array.forEach (product=>{
+        if (product.id == currentId){
+        return product;
+        }
+    })
+    return null;
 }
 const c1 = ajouterProduit(catalogue, {
     nom: 'Taille-crayon', cat: 'bureau',
