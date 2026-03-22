@@ -43,7 +43,8 @@ let catalogue = [
         id: 11, nom: 'Post-it jaunes', cat: 'papier', prix: 4.20, stock: 60,
         note: 4.6
     },
-    { id: 12, nom: 'Agenda 2025', cat: 'agenda', prix: 12.0, stock: 15 }, {
+    { id: 12, nom: 'Agenda 2025', cat: 'agenda', prix: 12.0, stock: 15 },
+    {
         id: 13, nom: 'Marqueur permanent', cat: 'ecriture', prix: 3.10, stock: 35,
         note: 4.4
     },
@@ -100,13 +101,72 @@ function getProduitById(array, id) {
     //forEach
     //condition
     //return product
-    array.forEach (product=>{
-        if (product.id == currentId){
-        return product;
+    array.forEach(product => {
+        if (product.id == currentId) {
+            return product;
         }
     })
     return null;
 }
+function rechercherProduits(array, filterationObject) {
+    console.log(filterationObject);
+    //     texte: nom contient ce texte(insensible a la casse)
+    //  categories: tableau-- le produit appartient a l'une de ces categories
+    //  prixMin / prixMax : fourchette de prix
+    //  enStock: boolean-- seulement les produits avec stock > 0
+    //  noteMin: note >= noteMin
+    //steps
+    //declare array of conditions
+    //get keys of filterationObject
+    //get values of filterationObject
+    //loop
+    //switch
+    //push to conditions
+    //convert the array to string and replace , to &&
+    let conditions = [];
+    let keys = Object.keys(filterationObject);
+    let values = Object.values(filterationObject);
+    keys.forEach(key => {
+        let index = keys.indexOf(key);
+        let condition;
+        conditions.push(condition);
+        switch (key) {
+            case "texte":
+                console.log(index);
+                condition = `product.includes(values[${index}])`;
+                break;
+            case "categories":
+                //   condition = "product.cat == ..";
+                condition = `product.cat == values[${index}]`;
+                break;
+            case "prixMin":
+                condition = `product.prix >= values[${index}]`;
+                break;
+            case "prixMax":
+                condition = `product.prix <= values[${index}]`;
+                break;
+            case "enStock":
+                let value = values[index];
+                if (value == true) {
+                    condition = "product.stock > 0";
+                } else {
+                    condition = "product.stock == 0";
+                }
+                break;
+            case "noteMin":
+                condition = `product.note >= values[${index}]`;
+                break;
+        }
+    })
+    console.log(conditions);
+}
+rechercherProduits(catalogue, {
+    enStock: true, noteMin: 4.5, texte: "sss"
+});
+/*output 
+[Stylo gel, Cahier A4, Post-it,
+Agenda, Compas]
+*/
 const c1 = ajouterProduit(catalogue, {
     nom: 'Taille-crayon', cat: 'bureau',
     prix: 1.10, stock: 200, note: 4.0
