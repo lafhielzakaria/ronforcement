@@ -128,40 +128,53 @@ function rechercherProduits(array, filterationObject) {
     let values = Object.values(filterationObject);
     keys.forEach(key => {
         let index = keys.indexOf(key);
+        let value = values[index];
         let condition;
-        conditions.push(condition);
         switch (key) {
             case "texte":
-                console.log(index);
+                console.log("texte");
                 condition = `product.includes(values[${index}])`;
+                conditions.push(condition);
                 break;
             case "categories":
+                console.log("categories");
                 //   condition = "product.cat == ..";
                 condition = `product.cat == values[${index}]`;
+                conditions.push(condition);
                 break;
             case "prixMin":
+                console.log("prixMin");
                 condition = `product.prix >= values[${index}]`;
+                conditions.push(condition);
                 break;
             case "prixMax":
+                console.log("prixMax");
                 condition = `product.prix <= values[${index}]`;
                 break;
             case "enStock":
-                let value = values[index];
+                console.log("enStock");
                 if (value == true) {
                     condition = "product.stock > 0";
                 } else {
                     condition = "product.stock == 0";
                 }
+                conditions.push(condition);
                 break;
             case "noteMin":
-                condition = `product.note >= values[${index}]`;
+                console.log("noteMin");
+                console.log(values[index]);
+                condition = `product.note >= ${value}`;
+                conditions.push(condition);
                 break;
         }
     })
-    console.log(conditions);
+    let convertedConditions = conditions.join(' && ');
+    console.log(convertedConditions);
+    let searchedProducts = catalogue.filter(product=>eval(convertedConditions)); 
+    console.log(searchedProducts);      
 }
 rechercherProduits(catalogue, {
-    enStock: true, noteMin: 4.5, texte: "sss"
+    enStock: true, noteMin: 4.5
 });
 /*output 
 [Stylo gel, Cahier A4, Post-it,
