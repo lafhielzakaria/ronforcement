@@ -1,7 +1,7 @@
 //ex1
 function nettoyer(tableau) {
     let clainTable = table.filter((num) => {
-        if (num != undefined && num != null && num != '' && num != 0) {
+        if (!num) {
             return num;
         }
     });
