@@ -1,47 +1,29 @@
 <?php
 /*
-### Exercise 5: Polymorphism with Animals
-**Concepts**: Polymorphism, Method Overriding
+### Exercise 6: Abstract Classes
+**Concepts**: abstract, abstract methods
+Create an abstract `Shape` class with:
+- Abstract method `calculateArea()`
+- Abstract method `calculatePerimeter()`
+- Method `describe()` - returns shape info with area and perimeter
 
-Create an `Animal` class with:
-- Protected property: `name`
-- Method `makeSound()` - returns generic sound
-- Method `introduce()` - returns name
-
-Create `Dog`, `Cat`, `Bird` classes that override `makeSound()`:
-- Dog: "Woof!"
-- Cat: "Meow!"
-- Bird: "Tweet!"
-
-Create an array of different animals and loop through them.
+Create concrete classes:
+- `Rectangle` (width, height)
+- `Circle` (radius)
+- `Triangle` (base, height, side1, side2, side3)
 
 ```php
-$animals = [new Dog("Rex"), new Cat("Whiskers"), new Bird("Tweety")];
-foreach ($animals as $animal) {
-    echo $animal->introduce() . " says " . $animal->makeSound();
+$shapes = [
+    new Rectangle(5, 10),
+    new Circle(7),
+    new Triangle(6, 8, 6, 8, 10)
+];
+foreach ($shapes as $shape) {
+    echo $shape->describe();
 }
 */
-class Animal
-{
-    protected $name;
-    function __construct($name)
-    {
-        $this->name = $name;
-    }
-    function makeSound() {}
-    function introduce() {}
-}
-class Cat extends Animal{
-    
-}
-class Dog extends Animal
-{
-    function makeSound()
-    {
-        echo "haw haw haw";
-    }
-    function introduce()
-    {
-        echo "I am " . $this->name;
-    }
+abstract class Shape{
+ abstract function calculateArea ();
+ abstract function calculatePerimeter ();
+ function descripe(){}  
 }
